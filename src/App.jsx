@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import Post from "./pages/Post";
 import ArticleEdit from "./pages/ArticleEdit";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             }
           />
           <Route path="/admin/articles/new" element={<ArticleEdit />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </Router>
     </>
