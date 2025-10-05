@@ -1,10 +1,9 @@
 import Header from "./components/Header";
 import Post from "./pages/Post";
+import ArticleEdit from "./pages/ArticleEdit";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
-  // const [theme, setTheme] = useState("");
-
   return (
     <>
       <Router>
@@ -13,11 +12,11 @@ function App() {
             path="/blogPost"
             element={
               <>
-                <Header />
                 <Post />
               </>
             }
           />
+          <Route path="/admin/articles/new" element={<ArticleEdit />} />
         </Routes>
       </Router>
     </>
