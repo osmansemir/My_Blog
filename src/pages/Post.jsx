@@ -1,4 +1,4 @@
-import MarkdownDisplay from "../components/MarkdownDisplay";
+import MarkdownDisplay from "../components/article/MarkdownDisplay";
 import { useArticles } from "../hooks/useArticles";
 
 function Post() {
@@ -16,4 +16,5 @@ function Post() {
     </>
   );
 }
+
 export default Post;

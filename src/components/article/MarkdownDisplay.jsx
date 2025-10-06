@@ -17,21 +17,13 @@ const MARKDOWN_CODE = ({ inline, className, children, ...props }) => {
     );
   }
 
-  if (inline) {
-    return (
-      <code
-        className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-red-600 dark:text-red-400 rounded text-sm font-mono"
-        {...props}
-      >
-        {children}
-      </code>
-    );
-  }
-
   return (
-    <pre className="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto my-4">
-      <code {...props}>{children}</code>
-    </pre>
+    <code
+      className="px-1.5 py-0.5 bg-gray-800 dark:bg-gray-800 text-white dark:text-red-400 rounded text-sm font-mono"
+      {...props}
+    >
+      {children}
+    </code>
   );
 };
 

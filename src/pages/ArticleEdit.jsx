@@ -10,7 +10,7 @@ import {
 } from "../components/ui/card";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
-import MarkdownDisplay from "../components/MarkdownDisplay";
+import MarkdownDisplay from "../components/article/MarkdownDisplay";
 import { useState } from "react";
 
 function ArticleEdit() {
