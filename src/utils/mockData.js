@@ -1357,7 +1357,7 @@ services:
     env_file:
       - .env
     environment:
-      - API_KEY=${API_KEY}
+      - API_KEY={API_KEY}
       - DEBUG=true
 \`\`\`
 
