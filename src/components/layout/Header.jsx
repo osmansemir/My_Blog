@@ -9,25 +9,27 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import { ModeToggle } from "../ModeToggle";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuLink aschild>Home</NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <NavigationMenuLink>Link</NavigationMenuLink>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-      <NavigationMenuItem>
+    <div className="flex justify-center items-center px-3 sticky top-0 z-10 h-18 w-full bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+      <div className="flex justify-between px-4 items-center md:w-2xl">
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link to="/">Home</Link>
+              </NavigationMenuLink>
+              <NavigationMenuLink asChild>
+                <Link to="/"></Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
         <ModeToggle />
-      </NavigationMenuItem>
-    </NavigationMenu>
+      </div>
+    </div>
   );
 }
 

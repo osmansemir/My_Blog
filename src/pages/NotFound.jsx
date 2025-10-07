@@ -1,9 +1,27 @@
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyTitle,
+} from "../components/ui/empty";
+
 function NotFound() {
   return (
     <>
-      <div className="flex items-center justify-center h-screen">
-        <h1 className="text-4xl font-bold">404 Page Not Found</h1>
-      </div>
+      <Empty className="flex-1 overflow-y-auto">
+        <EmptyHeader>
+          <EmptyTitle>404 - Not Found</EmptyTitle>
+          <EmptyDescription>
+            The page you&apos;re looking for doesn&apos;t exist.
+          </EmptyDescription>
+        </EmptyHeader>
+        <EmptyContent>
+          <EmptyDescription>
+            Need help? <a href="#">Contact support</a>
+          </EmptyDescription>
+        </EmptyContent>
+      </Empty>
     </>
   );
 }
