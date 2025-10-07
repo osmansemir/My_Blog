@@ -23,7 +23,7 @@ const MARKDOWN_COMPONENTS = {
 
 function MarkdownDisplay({ markdown }) {
   return (
-    <div className="prose dark:prose-invert">
+    <div className="prose xl:prose-xl prose-pre:bg-[#2F2F2F] dark:prose-invert">
       <article className="mx-auto w-full   ">
         <Markdown remarkPlugins={[remarkGfm]} components={MARKDOWN_COMPONENTS}>
           {markdown}

@@ -8,6 +8,7 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
+import { ModeToggle } from "../ModeToggle";
 
 function Header() {
   return (
@@ -23,6 +24,9 @@ function Header() {
           </NavigationMenuContent>
         </NavigationMenuItem>
       </NavigationMenuList>
+      <NavigationMenuItem>
+        <ModeToggle />
+      </NavigationMenuItem>
     </NavigationMenu>
   );
 }
