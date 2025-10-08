@@ -1,10 +1,11 @@
 import Post from "./pages/Post";
-import ArticleEdit from "./pages/ArticleEdit";
+import MarkdownEditor from "./pages/MarkdownEditor";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import { ArticleProvider } from "./context/ArticleContext";
 import Layout from "./components/layout/Layout";
 import { ThemeProvider } from "./context/ThemeContext";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <Router>
             <Routes>
               <Route
-                path="/blogPost"
+                path="/articles/:slug"
                 element={
                   <Layout>
                     <Post />
@@ -25,7 +26,23 @@ function App() {
                 path="/admin/articles/new"
                 element={
                   <Layout>
-                    <ArticleEdit />
+                    <MarkdownEditor />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/admin/articles/edit/:slug"
+                element={
+                  <Layout>
+                    <MarkdownEditor />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/"
+                element={
+                  <Layout>
+                    <Home />
                   </Layout>
                 }
               />

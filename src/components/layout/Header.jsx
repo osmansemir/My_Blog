@@ -21,8 +21,10 @@ function Header() {
               <NavigationMenuLink asChild>
                 <Link to="/">Home</Link>
               </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
               <NavigationMenuLink asChild>
-                <Link to="/"></Link>
+                <Link to="/admin/articles/new">Markdown Editor</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
