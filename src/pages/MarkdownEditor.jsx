@@ -1,8 +1,10 @@
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Textarea } from "../components/ui/textarea";
 import MarkdownDisplay from "../components/article/MarkdownDisplay";
-import { useState, useParams } from "react";
+import { useState, useEffect } from "react";
 import ArticleForm from "./ArticleForm";
+import { useArticles } from "../hooks/useArticles";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -18,6 +20,22 @@ function MarkdownEditor() {
     tags: "",
     description: "",
   });
+
+  const { getArticleBySlug } = useArticles();
+  const navigate = useNavigate();
+
+  const { slug } = useParams();
+
+  useEffect(() => {
+    if (slug) {
+      const article = getArticleBySlug(slug);
+      if (article) {
+        setFormData(article);
+      } else {
+        navigate("/404");
+      }
+    }
+  }, [slug, getArticleBySlug]);
 
   const handleChange = (field, value) => {
     setFormData((prev) => ({

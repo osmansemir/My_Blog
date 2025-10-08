@@ -1,12 +1,17 @@
+import { useEffect } from "react";
 import MarkdownDisplay from "../components/article/MarkdownDisplay";
 import { useArticles } from "../hooks/useArticles";
-import { unstable_usePrompt, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Post() {
-  const { articles, getArticleBySlug } = useArticles();
-  // const article = articles[Math.floor(Math.random() * articles.length)];
+  const { getArticleBySlug } = useArticles();
   const { slug } = useParams();
   const article = getArticleBySlug(slug);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!article) navigate("/404");
+  });
 
   if (!article) return <div>Article not found!</div>;
   return (

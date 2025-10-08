@@ -54,6 +54,14 @@ function App() {
                   </Layout>
                 }
               />
+              <Route
+                path="/404"
+                element={
+                  <Layout>
+                    <NotFound />
+                  </Layout>
+                }
+              />
             </Routes>
           </Router>
         </ArticleProvider>
