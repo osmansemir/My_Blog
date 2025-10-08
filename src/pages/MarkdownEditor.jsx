@@ -62,22 +62,3 @@ function MarkdownEditor() {
 }
 
 export default MarkdownEditor;
-
-const some = `
-
-
-
-placeholder:text-muted-foreground focus-visible:ring-ring/50 aria-invalid:ring-destructive/20
-dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 flex
-field-sizing-content min-h-16 border bg-transparent px-3 py-2 text-base transition-[color,box-shadow]
-focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-full font-mono rounded-none
-resize-none w-full focus-visible:outline-none border-inherit focus-visible:border-inherit focus:ring-0 ring-0 inset-ring-0
-inset-shadow-none shadow-none focus:outline-none outline-none
-
-
-
-
-
-h-full w-full font-mono rounded-none resize-none focus-visible:ring-0 
-
-`;
