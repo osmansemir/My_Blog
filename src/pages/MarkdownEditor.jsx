@@ -32,10 +32,10 @@ function MarkdownEditor() {
       if (article) {
         setFormData(article);
       } else {
-        navigate("/404");
+        navigate("/404", { replace: true });
       }
     }
-  }, [slug, getArticleBySlug]);
+  }, [slug]);
 
   const handleChange = (field, value) => {
     setFormData((prev) => ({

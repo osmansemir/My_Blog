@@ -10,13 +10,13 @@ function Post() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!article) navigate("/404");
+    if (!article) navigate("/404", { replace: true });
   });
 
   if (!article) return <div>Article not found!</div>;
   return (
     <>
-      <main className=" flex justify-center pt-8 pb-16 lg:pt-16 lg:pb-24 antialiased overflow-y-auto">
+      <main className=" flex justify-center pt-8 pb-6 lg:pt-16 lg:pb-24 antialiased overflow-y-auto">
         <div className=" px-4  md:max-w-2xl w-full">
           <MarkdownDisplay markdown={article.markdown} />
         </div>

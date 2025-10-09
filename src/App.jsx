@@ -6,6 +6,7 @@ import { ArticleProvider } from "./context/ArticleContext";
 import Layout from "./components/layout/Layout";
 import { ThemeProvider } from "./context/ThemeContext";
 import Home from "./pages/Home";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -19,6 +20,14 @@ function App() {
                 element={
                   <Layout>
                     <Post />
+                  </Layout>
+                }
+              />
+              <Route
+                path="/admin"
+                element={
+                  <Layout>
+                    <Admin />
                   </Layout>
                 }
               />
@@ -47,7 +56,7 @@ function App() {
                 }
               />
               <Route
-                path="/*"
+                path="/404"
                 element={
                   <Layout>
                     <NotFound />
@@ -55,7 +64,7 @@ function App() {
                 }
               />
               <Route
-                path="/404"
+                path="/*"
                 element={
                   <Layout>
                     <NotFound />
