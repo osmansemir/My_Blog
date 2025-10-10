@@ -10,6 +10,22 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
+import { ScrollArea } from "@radix-ui/react-scroll-area";
+import { Input } from "../components/ui/input";
+import { ModeToggle } from "../components/ModeToggle";
+import { Label } from "@radix-ui/react-label";
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+  FieldSeparator,
+  FieldSet,
+  FieldTitle,
+} from "@/components/ui/field";
 
 function MarkdownEditor() {
   const [formData, setFormData] = useState({
@@ -45,36 +61,56 @@ function MarkdownEditor() {
   };
 
   return (
-    <div className="">
-      <ResizablePanelGroup
-        direction="horizontal"
-        className="grid grid-cols-1 md:grid-cols-2  "
-      >
-        <ResizablePanel>
-          {/* Markdown Editor Card */}
-          <div className="px-0 md:col-span-1 md:h-screen ml-3">
-            <h1>Markdown Editor</h1>
-            <div className="h-[calc(100%-20px)]">
+    <div className="flex flex-col h-screen">
+      <div className="flex font-bold  items-center border-b px-3 h-[160px]">
+        <FieldGroup className="w-1/3">
+          <Field className="">
+            <FieldLabel htmlFor="input-id" className="pl-3">
+              Title
+            </FieldLabel>
+            {/* Input, Select, Switch, etc. */}
+            <Input
+              placeholder="Title"
+              className="w-1/3 wrap-anywhere focus-visible:border-0 focus-visible:ring-0 rounded-none text-2xl border-0 "
+              value={formData.title}
+            />
+            {/* <FieldError>Validation message.</FieldError> */}
+          </Field>
+          <Field orientation="horizontal" className="ml-3">
+            <Button>Save</Button>
+            <Button variant="outline" onClick={() => navigate(-1)}>
+              Discard
+            </Button>
+          </Field>
+        </FieldGroup>
+        <div className="mx-3 grow"></div>
+        <ModeToggle />
+      </div>
+      <ScrollArea className="h-[calc(100vh-184px)]">
+        <ResizablePanelGroup direction="horizontal" className="">
+          <ResizablePanel>
+            {/* Markdown Editor Card */}
+            <div className="h-full">
               <Textarea
-                className="h-full w-full font-mono rounded-none resize-none focus-visible:ring-0 outline-none border-inherit focus-visible:border-inherit "
+                className="h-full w-full pb-16 font-mono rounded-none resize-none focus-visible:ring-0 border-0 focus-visible:border-0 "
                 placeholder="Type your markdown here..."
                 value={formData.markdown}
                 onChange={(e) => handleChange("markdown", e.target.value)}
               />
             </div>
-          </div>
-        </ResizablePanel>
-        <ResizableHandle withHandle />
-        <ResizablePanel>
-          {/* Preview Card */}
-          <div className="md:col-span-1 md:h-screen mr-3">
-            <h1>Preview</h1>
-            <div className="h-[calc(100%-20px)] overflow-y-auto">
+          </ResizablePanel>
+          <ResizableHandle withHandle />
+          <ResizablePanel>
+            {/* Preview Card */}
+            <div className="h-full p-3 overflow-y-auto pb-16">
               <MarkdownDisplay markdown={formData.markdown} />
             </div>
-          </div>
-        </ResizablePanel>
-      </ResizablePanelGroup>
+          </ResizablePanel>
+        </ResizablePanelGroup>
+      </ScrollArea>
+      <div className="h-6 bg-foreground text-background text-sm align-bottom">
+        Words:
+      </div>
     </div>
   );
 }
