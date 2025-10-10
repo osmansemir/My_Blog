@@ -31,21 +31,10 @@ function App() {
                   </Layout>
                 }
               />
-              <Route
-                path="/admin/articles/new"
-                element={
-                  <Layout>
-                    <MarkdownEditor />
-                  </Layout>
-                }
-              />
+              <Route path="/admin/articles/new" element={<MarkdownEditor />} />
               <Route
                 path="/admin/articles/edit/:slug"
-                element={
-                  <Layout>
-                    <MarkdownEditor />
-                  </Layout>
-                }
+                element={<MarkdownEditor />}
               />
               <Route
                 path="/"

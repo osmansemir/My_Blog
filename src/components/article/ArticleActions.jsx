@@ -2,13 +2,16 @@ import { ItemActions } from "../ui/item";
 import { Button } from "../ui/button";
 import { useArticles } from "../../hooks/useArticles";
 import AlertAction from "./AlertAction";
+import { useNavigate } from "react-router-dom";
 
 function ArtcileActions({ slug }) {
   const { deleteArticle } = useArticles();
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    console.log("Edit");
+    navigate(`/admin/articles/edit/${slug}`);
   };
+
   return (
     <ItemActions>
       <Button onClick={() => handleClick()} size="sm" className="">
