@@ -53,77 +53,71 @@ function MarkdownEditor() {
   // Handle save from ArticleForm dialog
   const onSave = (article) => {
     // if article with slug exists, update it, else add new
-    if(getArticleBySlug(article.slug)) {
-    
+    if (getArticleBySlug(article.slug)) {
+      // setArticle((prev) => ({
+      //   ...prev,
+      //   ...article,
+      // }));
+      console.log("Article saved:", article);
+      navigate(-1);
+      // TODO:
+      // toast.success("Article saved successfully!");
+    }
 
-    
+    const wordCount = article.markdown
+      .trim()
+      .split(/\s+/)
+      .filter((word) => word.length > 0).length;
 
+    return (
+      <div className="flex flex-col h-screen">
+        {/* Header */}
+        <div className="flex font-bold items-center border-b px-3 h-[160px]">
+          <div className="w-1/2 flex-col">
+            <h1 className="text-2xl mb-2">{article.title}</h1>
 
+            <ArticleForm article={article} onSave={onSave} />
+            <Button variant="outline" onClick={() => navigate(-1)}>
+              Discard
+            </Button>
+          </div>
 
-    // setArticle((prev) => ({
-    //   ...prev,
-    //   ...article,
-    // }));
-    console.log("Article saved:", article);
-    navigate(-1);
-    // TODO:
-    // toast.success("Article saved successfully!");
-  };
-
-  const wordCount = article.markdown
-    .trim()
-    .split(/\s+/)
-    .filter((word) => word.length > 0).length;
-
-  return (
-    <div className="flex flex-col h-screen">
-      {/* Header */}
-      <div className="flex font-bold items-center border-b px-3 h-[160px]">
-        <div className="w-1/2 flex-col">
-          <h1 className="text-2xl mb-2">{article.title}</h1>
-
-          <ArticleForm article={article} onSave={onSave} />
-          <Button variant="outline" onClick={() => navigate(-1)}>
-            Discard
-          </Button>
+          <div className="mx-3 grow"></div>
+          <ModeToggle />
         </div>
 
-        <div className="mx-3 grow"></div>
-        <ModeToggle />
+        {/* Editor and Preview */}
+        <ScrollArea className="h-[calc(100vh-184px)]">
+          <ResizablePanelGroup direction="horizontal">
+            <ResizablePanel>
+              {/* Markdown Editor */}
+              <div className="h-full">
+                <Textarea
+                  className="h-full w-full pb-16 font-mono rounded-none resize-none focus-visible:ring-0 border-0 focus-visible:border-0"
+                  placeholder="Type your markdown here..."
+                  value={article.markdown}
+                  onChange={(e) => handleMarkdownChange(e.target.value)}
+                />
+              </div>
+            </ResizablePanel>
+
+            <ResizableHandle withHandle />
+
+            <ResizablePanel>
+              {/* Preview */}
+              <div className="h-full p-3 overflow-y-auto pb-16">
+                <MarkdownDisplay markdown={article.markdown} />
+              </div>
+            </ResizablePanel>
+          </ResizablePanelGroup>
+        </ScrollArea>
+
+        {/* Footer - Word Count */}
+        <div className="h-6 bg-foreground text-background text-sm flex items-center px-3">
+          Words: {wordCount}
+        </div>
       </div>
-
-      {/* Editor and Preview */}
-      <ScrollArea className="h-[calc(100vh-184px)]">
-        <ResizablePanelGroup direction="horizontal">
-          <ResizablePanel>
-            {/* Markdown Editor */}
-            <div className="h-full">
-              <Textarea
-                className="h-full w-full pb-16 font-mono rounded-none resize-none focus-visible:ring-0 border-0 focus-visible:border-0"
-                placeholder="Type your markdown here..."
-                value={article.markdown}
-                onChange={(e) => handleMarkdownChange(e.target.value)}
-              />
-            </div>
-          </ResizablePanel>
-
-          <ResizableHandle withHandle />
-
-          <ResizablePanel>
-            {/* Preview */}
-            <div className="h-full p-3 overflow-y-auto pb-16">
-              <MarkdownDisplay markdown={article.markdown} />
-            </div>
-          </ResizablePanel>
-        </ResizablePanelGroup>
-      </ScrollArea>
-
-      {/* Footer - Word Count */}
-      <div className="h-6 bg-foreground text-background text-sm flex items-center px-3">
-        Words: {wordCount}
-      </div>
-    </div>
-  );
+    );
+  };
 }
-
 export default MarkdownEditor;

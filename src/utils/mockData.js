@@ -2125,10 +2125,17 @@ export function getFeaturedArticles() {
 
 // Helper function to get related articles based on tags
 export function getRelatedArticles(currentArticle, limit = 4) {
-  return mockArticles
-    .filter((article) => article.id !== currentArticle.id)
-    .filter((article) =>
-      article.tags.some((tag) => currentArticle.tags.includes(tag)),
-    )
+  const currentTags = new Set(currentArticle.tags);
+  const articlesWithScores = mockArticles
+    .filter((article) => article.id !== currentArticle.id) // Exclude the current article
+    .map((article) => {
+      const sharedTags = article.tags.filter((tag) => currentTags.has(tag));
+      return { ...article, score: sharedTags.length };
+    })
+    .filter((article) => article.score > 0); // Only include articles with at least one shared tag
+
+  // Sort by score (descending) and then by date (descending) as a tie-breaker
+  return articlesWithScores
+    .sort((a, b) => b.score - a.score || new Date(b.date) - new Date(a.date))
     .slice(0, limit);
 }
