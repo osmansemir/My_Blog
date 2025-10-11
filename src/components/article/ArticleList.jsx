@@ -2,6 +2,7 @@ import { Empty, EmptyDescription, EmptyTitle } from "../ui/empty";
 import { ItemGroup, ItemSeparator } from "../ui/item";
 import ArticleCard from "./ArticleCard";
 import NewArticleButton from "./NewArticleButton";
+import React from "react";
 
 function ArticleList({ articles, isAdmin = false }) {
   return (
@@ -17,14 +18,14 @@ function ArticleList({ articles, isAdmin = false }) {
       <ItemGroup>
         {isAdmin && <NewArticleButton />}
         {articles.map((article, index) => (
-          <>
+          <React.Fragment key={article.slug}>
             <ArticleCard
               key={article.slug}
               article={article}
               isAdmin={isAdmin}
             />
             {index !== articles.length - 1 && <ItemSeparator />}
-          </>
+          </React.Fragment>
         ))}
       </ItemGroup>
     </>
